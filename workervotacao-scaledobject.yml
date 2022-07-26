@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: workervotacao-scaledobject
+spec:
+  scaleTargetRef:
+    name: workervotacao
+  pollingInterval: 15
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+  - type: kafka
+    metadata:
+      bootstrapServers: eventhubsname.servicebus.windows.net:9093
+      consumerGroup: workervotacao
+      topic: topic-votacao
+      lagThreshold: '5'
+      offsetResetPolicy: earliest
+    authenticationRef:
+      name: workervotacao-triggerauth-kafka

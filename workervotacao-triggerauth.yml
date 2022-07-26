@@ -1,0 +1,18 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: workervotacao-triggerauth-kafka
+spec:
+  secretTargetRef:
+  - parameter: sasl
+    name: workervotacaosecret
+    key: SaslKafka
+  - parameter: username
+    name: workervotacaosecret
+    key: UsernameKafka
+  - parameter: password
+    name: workervotacaosecret
+    key: PasswordKafka
+  - parameter: tls
+    name: workervotacaosecret
+    key: TlsKafka
